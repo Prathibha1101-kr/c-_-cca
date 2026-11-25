@@ -1,0 +1,62 @@
+
+#include <iostream>
+using namespace std;
+
+class Payment {
+public:
+    virtual void makePayment(int amount) {
+        cout << "Payment Successful" << endl;
+    }
+};
+
+class UPI : public Payment {
+public:
+    void makePayment(int amount) {
+        cout << "Payment Mode: UPI" << endl;
+        cout << "Amount Paid = " << amount << endl;
+        cout << "Payment Successful" << endl;
+    }
+};
+
+class CreditCard : public Payment {
+public:
+    void makePayment(int amount) {
+        cout << "Payment Mode: Credit Card" << endl;
+        cout << "Amount Paid = " << amount << endl;
+        cout << "Payment Successful" << endl;
+    }
+};
+
+class Cash : public Payment {
+public:
+    void makePayment(int amount) {
+        cout << "Payment Mode: Cash" << endl;
+        cout << "Amount Paid = " << amount << endl;
+        cout << "Payment Successful" << endl;
+    }
+};
+
+int main() {
+    int amount;
+    string mode;
+
+    cin >> mode;
+    cin >> amount;
+
+    UPI u;
+    CreditCard c;
+    Cash ca;
+
+    Payment *p;
+
+    if (mode == "UPI")
+        p = &u;
+    else if (mode == "CreditCard")
+        p = &c;
+    else
+        p = &ca;
+
+    p->makePayment(amount);
+
+    return 0;
+}
